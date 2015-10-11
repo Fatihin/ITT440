@@ -1,5 +1,9 @@
-import socket
-server_socket = socket.socket(socket.AF_INET , socket.SOCK_STREAM)
+from socket import *
+
+bufsize =' '
+state = ' '
+afterset = ' '
+server_socket = socket(AF_INET ,SOCK_STREAM)
 server_socket.bind(("",1025))
 server_socket.listen(5)
 
@@ -15,11 +19,19 @@ while 1:
 			client_socket.close()
 			break;
 		else:
+			
 			client_socket.send(data)
+			bufsize = client_socket.getsockopt(SOL_SOCKET, SO_SNDBUF)
+			state = client_socket.getsockopt(SOL_SOCKET, SO_REUSEADDR)
 			data = client_socket.recv(512)
+			print "buffer send :" , bufsize
+			print "reuse address before set :", state
 		if (data == 'q' or data == 'Q'):
 			client_socket.close()
 			break;
 		else:
-			print "RECEIVED:", data
+			afterset = client_socket.setsockopt(SOL_SOCKET, SO_REUSEADDR,1)
+			
+			print "reuse after set:", client_socket.getsockopt(SOL_SOCKET,SO_REUSEADDR)
+
 			
