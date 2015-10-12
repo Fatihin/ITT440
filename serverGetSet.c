@@ -26,7 +26,7 @@ int main()
 	addr_size = addr_size *2;
 	serverStorage = 53894;
 	ret= setsockopt(welcomeSocket, SOL_SOCKET, SO_SNDBUF,(struct sockaddr *) &serverStorage, sizeof (serverStorage));
-	printf("New :%d\n",serverStorage);
+	printf("hoi :%d\n",serverStorage);
 
 	
 	return 0;
