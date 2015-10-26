@@ -36,7 +36,7 @@ int main (int argc, char * argv[])
 	udpServer.sin_family = AF_INET;
 	udpServer.sin_addr.s_addr = htonl(INADDR_ANY);
 	udpServer.sin_port = htons(atoi(argv[1]));
-	memset(udpServer.sin_zero, '\0',sizeof udpServer.sin_zero);
+	memset(udpServer.sin_zero, '\0',sizeof udpServer.sin_zero); 
 	returnStatus = bind (udpSocket, (struct sockaddr*) &udpServer, sizeof(udpServer));
 	if(returnStatus ==0)
 	{
@@ -45,7 +45,7 @@ int main (int argc, char * argv[])
 		printf("GetSocket %d\n",getsockopt);
 		if(returnStatus >  0)
 		printf("Already Set \n");
-		
+
 		else
 		{
 			//pitfall3
